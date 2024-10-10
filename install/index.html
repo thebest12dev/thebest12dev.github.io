@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="resources/style.css">
+			</head>
+			<body>
+				<div id="mySidenav" class="sidenav">
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+					<a href="#">Installing</a>
+					<a href="#">Documentation</a>
+					<a href="#">Source code</a>
+					<a href="#">Contributing</a>
+				</div>
+				<div id="main" class="main-area">
+					<div id="container-1" class="container-2">
+						<div style="text-align: left;margin-left: 20px;margin-top: 20px;">
+							<span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span>
+						</div>
+						<div style="padding-top: 50px;">
+							<span id="title" class="title" style="color: black;">Downloads</span>
+							<span style="font-size: larger;">
+								<br>
+									<br>worldmanager currently supports Windows and Linux (testing).
+										<br>You can download them below.
+										</span>
+										<div id="download-badge" style="margin-top: 20px;">
+											<div>
+												<div style="margin: auto;text-align: left;padding-left: 48px;">
+													<span style="position: absolute;padding-top: 15px;margin: auto;text-align: left;">worldmanager (Development)</span>
+												</div>
+												<div class="radar-container" style="text-align: left;  padding-top: 12px; padding-left: 12px;">
+													<div class="center-circle"></div>
+													<div class="radar"></div>
+												</div>
+											</div>
+											<div style="padding-top: 25px;">
+												<div class="select no-select" id="select-type">
+													<div class="select-selected">Select a download &dtrif;</div>
+													<div class="select-items">
+														<div value="windows-zip">Windows (.zip)</div>
+														<div value="linux-deb">Linux (.deb)</div>
+														<div value="linux-zip">Linux (.zip)</div>
+														<div value="jar-no-lib">JAR (without libraries)</div>
+														<div value="src">Source code</div>
+													</div>
+												</div>
+												<div class="select no-select" id="select-version">
+													<div class="select-selected">Select a version &dtrif;</div>
+													<div class="select-items">
+														<div style="padding: 0px;" value="latest">Latest</div>
+														<div style="padding: 0px;" value="alpha-0.1.0">0.1.0 Alpha</div>
+														<div style="padding: 0px;" value="alpha-0.0.1">0.0.1 Alpha</div>
+													</div>
+												</div>
+											</div>
+                      <div>
+                        <button class="blue-highlight" onclick="download()" style="font-size: 12pt;height:35px;margin-top: 50px;" id="download-btn" disabled>Download</button>
+
+                      </div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<script>
+                let version = "";
+                
+                let type = "";
+                function download() {
+                  let file = "";
+                  let t =true;
+                  let repo;
+                  switch (type) {
+                    case "windows-zip":
+                      file = "worldmanager.zip"
+                      
+                      break;
+                    case "jar-no-lib":
+                      t = false
+                      if (version == "latest") {
+                        repo = "https://github.com/thebest12dev/worldmanager/releases/latest/download/worldmanager.jar"
+                    window.open(repo);
+                      } else {
+                      repo = "https://github.com/thebest12dev/worldmanager/releases/download/"+version+"/worldmanager.jar"
+                      window.open(repo);
+                      }
+                      break;
+                    case "src":
+                      t = false
+                      if (version == "latest") {
+                        repo = "https://github.com/thebest12dev/worldmanager/archive/refs/tags/"+"alpha-0.1.0"+".zip"
+                    window.open(repo);
+                      } else {
+                      repo = "https://github.com/thebest12dev/worldmanager/archive/refs/tags/"+version+".zip"
+                    window.open(repo);}
+                      break;
+                    default:
+                      break;
+                  }
+                  if (file != "" && t) {
+                    repo = "https://github.com/thebest12dev/worldmanager/releases/download/"+version+"/"+file
+                  window.open(repo);
+                  }
+                  
+                  
+                }
+                function openNav() {
+                  document.getElementById("mySidenav").style.width = "250px";
+                  document.getElementById("main").style.marginLeft = "250px";
+                }
+
+                function closeNav() {
+                  document.getElementById("mySidenav").style.width = "0";
+                  document.getElementById("main").style.marginLeft= "0";
+                }
+                document.querySelectorAll('.select').forEach(function(selectContainer) {
+                    var selected = selectContainer.querySelector('.select-selected');
+                    var items = selectContainer.querySelector('.select-items');
+                    var options = items.querySelectorAll('div');
+
+                    selected.addEventListener('click', function() {
+                        this.classList.toggle('select-arrow-active');
+                        items.classList.toggle('select-hide');
+                    });
+
+                    options.forEach(function(option) {
+                        option.addEventListener('click', function(e) {
+                            selected.innerHTML = e.target.innerHTML + " ▾";
+                           
+                            if (selectContainer.id === "select-type") {
+                              type = e.target.getAttribute("value")
+                              
+                            } else if (selectContainer.id === "select-version") {
+                              version = e.target.getAttribute("value")
+                            }
+                            if (!type == "" && !version == "") {
+                              document.getElementById("download-btn").disabled = false
+                            }
+                           
+                            items.classList.add('select-hide');
+                            selected.classList.remove('select-arrow-active');
+                        });
+                    });
+
+                    document.addEventListener('click', function(e) {
+                        if (!selectContainer.contains(e.target)) {
+                            items.classList.add('select-hide');
+                            selected.classList.remove('select-arrow-active');
+                        }
+                    });
+                });
+                </script>
+						</body>
+					</html> 

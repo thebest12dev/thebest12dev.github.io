@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="resources/style.css">
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#">Downloads</a>
+  <a href="#">Documentation</a>
+  <a href="#">Source code</a>
+  <a href="#">Contributing</a>
+</div>
+
+<div id="main" class="main-area">
+
+  <div id="container-1" class="container-1"> 
+    <div style="text-align: left;margin-left: 20px;margin-top: 20px;">
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span> 
+    </div>
+    
+    <div style="padding-top: 50px;">
+      <span id="title" class="title">worldmanager</span>
+      <span style="font-size: larger;"><br><br>An world manager for Minecraft.</span>
+    <p style="text-align: center;align-content: center;align-items: center;margin: auto;max-width: 500px;"><br><br>worldmanager is a world manager for Minecraft. It 
+      can backup, edit, load, unzip worlds as well as automatically retrieving worlds and backups. It 
+      also comes with other features like viewing statistics about worlds, modifying world data (NBT)
+       and more features that are yet to come. Currently, worldmanager is in alpha so make sure to look
+        out for bugs.</p>
+        <a href="./install/"><button id="install" class="blue-highlight" style="margin-right: 20px;">Downloads</button></a>
+        <button id="install" class="fade-in-1">Documentation</button>
+    </div> 
+  </div>
+ 
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+   
+</body>
+</html> 
